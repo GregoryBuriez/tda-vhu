@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
-from sklearn.cluster import DBSCAN
-import folium
 import numpy as np
-from streamlit_folium import st_folium
 import os
 
 
@@ -202,54 +199,14 @@ with st.expander("Détail fiches"):
 
 ###############################"CARTE INTERACTIVE##############################
 
-# Filtrer les lignes avec des coordonnées valides
-data = data.dropna(subset=['Latitude', 'Longitude'])
+import streamlit.components.v1 as components
 
-# Utiliser DBSCAN pour regrouper les résidences
-coords = data[['Latitude', 'Longitude']].values
-db = DBSCAN(eps=0.01, min_samples=1).fit(coords)
-data['Cluster'] = db.labels_
+st.title('Affichage de la page HTML')
+# Définir le chemin vers votre fichier HTML
+html_file_path = "C:\\Users\\gregm\\OneDrive\\Bureau\\Test theo\\carte_vhu_martinique.html"
+# Lire le contenu du fichier HTML
+with open(html_file_path, 'r', encoding='utf-8') as html_file:
+    html_content = html_file.read()
+# Afficher le contenu HTML
+components.html(html_content, height=800)  # Ajustez la hauteur selon vos besoins
 
-# Calculer le nombre total de VHU par cluster
-cluster_vhu = data.groupby('Cluster')['Nombre de VHU'].sum().reset_index()
-
-# Calculer le centre de chaque cluster
-cluster_centers = data.groupby('Cluster')[['Latitude', 'Longitude']].mean().reset_index()
-
-# Fusionner les résultats
-cluster_data = pd.merge(cluster_vhu, cluster_centers, on='Cluster')
-
-# Créer une carte centrée sur la Martinique
-m = folium.Map(location=[14.641528, -61.024174], zoom_start=11)
-
-# Ajouter les points verts pour toutes les résidences
-for idx, row in data.iterrows():
-    folium.CircleMarker(
-        location=[row['Latitude'], row['Longitude']],
-        radius=3,
-        color='green',
-        fill=True,
-        fillColor='green',
-        fill_opacity=0.6,
-        popup=f"Latitude: {row['Latitude']}<br>Longitude: {row['Longitude']}"
-    ).add_to(m)
-
-# Ajouter les cercles pour les clusters
-for idx, row in cluster_data.iterrows():
-    nombre_vhu = row['Nombre de VHU']
-    color = 'red' if nombre_vhu > 50 else ('yellow' if nombre_vhu > 0 else 'green')
-    radius = 5 + np.log1p(nombre_vhu) * 5  # Utiliser une échelle logarithmique pour ajuster la taille
-
-    folium.CircleMarker(
-        location=[row['Latitude'], row['Longitude']],
-        radius=radius,
-        popup=f"Cluster {row['Cluster']}: {nombre_vhu} VHU",
-        color=color,
-        fill=True,
-        fillColor=color,
-        fill_opacity=0.6  # Opacité de remplissage ajustée
-    ).add_to(m)
-
-# Afficher la carte dans Streamlit
-st.write("## Cartographie des VHU recensées")
-st_folium(m, width=900, height=800)  # Taille ajustée pour la carte
