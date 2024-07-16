@@ -5,6 +5,7 @@ from sklearn.cluster import DBSCAN
 import folium
 import numpy as np
 from streamlit_folium import st_folium
+import os
 
 
 
@@ -23,7 +24,7 @@ df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en c
 st.title('Compte rendu inventaire bailleurs sociaux')
 
 # Définir le chemin vers votre vidéo
-video_file_path = "C:\\Users\\gregm\\OneDrive\\Bureau\\Test theo\\Bailleurs_vfinale.mp4"
+video_file_path = "https://drive.google.com/file/d/1o47zz06n_x36wZOIKrz3bERCYJ4dT7C2/view?usp=sharing"
 
 # Lire et afficher la vidéo
 st.title("Lecteur de vidéo Streamlit")
@@ -147,8 +148,6 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 
 ####################################"GRAPHIQUE PRESENTATION"###################################""
-
-import os
 
 st.title('Représentation graphique des données')
 
