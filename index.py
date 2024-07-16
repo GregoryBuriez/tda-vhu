@@ -19,11 +19,16 @@ data = pd.read_excel("C:/Users/gregm/OneDrive/Bureau/Test theo/Map nb vhu.xlsx",
 df['Vehicule'] = df['Vehicule'].astype(str)  # Convertir la colonne 'Vehicule' en chaîne de caractères
 df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en chaîne de caractères
 
-################################"MISE EN FORME"################################""
+################################"VIDEO PRESENTATION"################################""
 
 st.title('Compte rendu inventaire bailleurs sociaux')
 
-st.subheader('Attente film')
+# Définir le chemin vers votre vidéo
+video_file_path = "C:\\Users\\gregm\\OneDrive\\Bureau\\Test theo\\Bailleurs_vfinale.mp4"
+
+# Lire et afficher la vidéo
+st.title("Lecteur de vidéo Streamlit")
+st.video(video_file_path)
 
 
 ############################## CREATION KPI ####################################
@@ -144,63 +149,19 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 ####################################"GRAPHIQUE PRESENTATION"###################################""
 
-# Calcul du nombre de lignes par bailleur
-bailleur_counts = df['Bailleur Sociale'].value_counts().reset_index()
-bailleur_counts.columns = ['Bailleur Sociale', 'Nombre de lignes']
-#bailleur_counts = bailleur_counts.sort_values(by='Nombre de lignes', ascending=False)  # Optionnel : trier par nombre de lignes décroissant
+import os
 
-# Convertir les colonnes en types de données appropriés
-df['Vehicule'] = df['Vehicule'].astype(str)  # Convertir la colonne 'Vehicule' en chaîne de caractères
-df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en chaîne de caractères
+st.title('Représentation graphique des données')
 
+# Définir le chemin vers votre image
+image_path2 = "C:\\Users\\gregm\\OneDrive\\Bureau\\Test theo\\image GRAPHIQUES.png"
 
-# Configuration de l'affichage des données
-pd.set_option('display.max_colwidth', None)  # Permet d'afficher toutes les données sans couper les colonnes
-
-# Calcul du nombre de lignes par ville
-ville_counts = df['Ville'].value_counts().reset_index()
-ville_counts.columns = ['Ville', 'Nombre de lignes']
-#ville_counts = ville_counts.sort_values(by='Nombre de lignes', ascending=False)  # Optionnel : trier par nombre de lignes décroissant
-
-# Affichage des tableaux côte à côte avec des colonnes Streamlit
-#st.write("Nombre de lignes par bailleur et par ville")
-#col1, col2 = st.columns(2)
-#with col1:
-#    st.write("**Nombre de lignes par bailleur**")
- #   st.dataframe(bailleur_counts.set_index('Bailleur Sociale'))
-#with col2:
- #   st.write("**Nombre de lignes par ville**")
-  #  st.dataframe(ville_counts.set_index('Ville'))#
-
-# Sélectionner les 5 premières communes avec le plus grand nombre de VHU
-top_communes = ville_counts.head(5)
-
-# Création des graphiques avec Seaborn
-plt.figure(figsize=(13, 6))
-
-# Premier graphique : Top 5 des communes avec le plus grand nombre de lignes
-plt.subplot(121)
-sns.barplot(x='Nombre de lignes', y='Ville', data=top_communes, palette='viridis')
-plt.title('Les 5 communes avec le plus grand nombre de VHU')
-plt.xlabel('Nombre de VHU')
-
-# Ajouter les étiquettes de données au premier graphique
-for i, v in enumerate(top_communes['Nombre de lignes']):
-    plt.text(v + 10, i, str(v), ha='left', va='center', fontsize=10)
-
-# Deuxième graphique : Nombre de lignes par bailleur social
-plt.subplot(122)
-sns.barplot(x='Nombre de lignes', y='Bailleur Sociale', data=bailleur_counts, palette='coolwarm')
-plt.title('Nombre de VHU selon les bailleurs sociaux')
-plt.xlabel('Nombre de VHU')
-
-# Ajouter les étiquettes de données au deuxième graphique
-for i, v in enumerate(bailleur_counts['Nombre de lignes']):
-    plt.text(v + 5, i, str(v), ha='left', va='center', fontsize=10)
-
-# Affichage des graphiques côte à côte dans Streamlit
-st.pyplot(plt)
-
+# Vérifier si l'image existe
+if os.path.exists(image_path2):
+    st.title("Graphique")
+    st.image(image_path2)
+else:
+    st.error(f"L'image n'a pas été trouvée à l'emplacement: {image_path2}")
 
 
 
@@ -241,18 +202,6 @@ with st.expander("Détail fiches"):
 
     # Afficher le DataFrame complet filtré avec les colonnes spécifiées
     st.dataframe(filtered_df[['Fiche Numéro', 'Créé le', 'Marque', 'Etat', 'Adresse', 'Ville', 'Bailleur Sociale']])
-
-    # Ajouter un bouton pour télécharger le DataFrame filtré au format CSV
-    """def download_csv():
-        csv = filtered_df.to_csv(index=False)
-        b64 = base64.b64encode(csv.encode()).decode()
-        href = f'<a href="data:file/csv;base64,{b64}" download="filtered_data.csv">Télécharger le fichier CSV</a>'
-        st.markdown(href, unsafe_allow_html=True)
-
-    st.button('Télécharger CSV', on_click=download_csv)"""
-
-
-
 
 ###############################"CARTE INTERACTIVE##############################
 
