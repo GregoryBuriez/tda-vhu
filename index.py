@@ -20,14 +20,14 @@ df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en c
 
 ################################"VIDEO PRESENTATION"################################""
 
-st.title('Compte rendu inventaire bailleurs sociaux')
+#st.title('Compte rendu inventaire bailleurs sociaux')
 
 # Définir le chemin vers votre vidéo
-video_file_path = "https://drive.google.com/file/d/1o47zz06n_x36wZOIKrz3bERCYJ4dT7C2/view?usp=sharing"
+#video_file_path = "https://drive.google.com/file/d/1o47zz06n_x36wZOIKrz3bERCYJ4dT7C2/view?usp=sharing"
 
 # Lire et afficher la vidéo
-st.title("Lecteur de vidéo Streamlit")
-st.video(video_file_path)
+#st.title("Lecteur de vidéo Streamlit")
+#st.video(video_file_path)
 
 
 ############################## CREATION KPI ####################################
