@@ -203,7 +203,7 @@ import streamlit.components.v1 as components
 
 st.title('Affichage de la page HTML')
 # Définir le chemin vers votre fichier HTML
-html_file_path = "C:\\Users\\gregm\\OneDrive\\Bureau\\Test theo\\carte_vhu_martinique.html"
+html_file_path = "carte_vhu_martinique.html"
 # Lire le contenu du fichier HTML
 with open(html_file_path, 'r', encoding='utf-8') as html_file:
     html_content = html_file.read()
