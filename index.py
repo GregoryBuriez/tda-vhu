@@ -7,9 +7,9 @@ import os
 
 ########################"CHARGEMENT DES DONNEES"################################
 # Charger les données
-df = pd.read_excel("C:/Users/gregm/OneDrive/Bureau/Test theo/FINAL.xlsx", sheet_name='Sheet1')
+df = pd.read_excel("FINAL.xlsx')
 # Charger les données pour la carte
-data = pd.read_excel("C:/Users/gregm/OneDrive/Bureau/Test theo/Map nb vhu.xlsx", sheet_name='Map nb vhu')
+#data = pd.read_excel("Map nb vhu.xlsx')
 
 # Convertir les colonnes en types de données appropriés
 df['Vehicule'] = df['Vehicule'].astype(str)  # Convertir la colonne 'Vehicule' en chaîne de caractères
