@@ -82,7 +82,7 @@ st.subheader('Statistiques des Véhicules Hors d\'Usage (VHU)')
 
 # Cadre KPI pour le nombre total de véhicules VHU
 st.markdown(f'<div style="{style_kpi_centered}">\
-                <h3 style="margin-bottom: 8px;">Nombre total de véhicules VHU</h3>\
+                <h3 style="margin-bottom: 8px;">Nombre total de VHU recensés</h3>\
                 <p style="font-weight: bold; font-size: 24px;">{nombre_total_lignes}</p>\
               </div>', unsafe_allow_html=True)
 
