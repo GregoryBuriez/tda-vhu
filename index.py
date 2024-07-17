@@ -29,72 +29,119 @@ st.video(youtube_url)
 
 
 ############################## CREATION KPI ####################################
-# Liste des communes et bailleurs uniques pour les menus déroulants
-communes_uniques = data['Commune'].unique()
-bailleurs_uniques = data['Bailleur'].unique()
+# Calcul du nombre total de lignes dans le dataframe
+nombre_total_lignes = df.shape[0]
 
-# Widget pour sélectionner la commune dans la barre latérale
-selected_commune = st.sidebar.selectbox('Sélectionner une commune', communes_uniques)
+# Calcul du nombre total de résidences dans le dataframe
+nombre_total_residences = data['Residences'].nunique()
+# Calcul du nombre de résidences avec et sans VHU
+residences_avec_vhu = data[data['Nombre de VHU'] > 0]['Residences'].nunique()
+residences_sans_vhu = data[data['Nombre de VHU'] == 0]['Residences'].nunique()
 
-# Widget pour sélectionner le bailleur dans la barre latérale
-selected_bailleur = st.sidebar.selectbox('Sélectionner un bailleur', bailleurs_uniques)
+# Calcul des pourcentages
+pourcentage_avec_vhu = (residences_avec_vhu / nombre_total_residences) * 100
+pourcentage_sans_vhu = (residences_sans_vhu / nombre_total_residences) * 100
 
-# Filtrage des données en fonction des sélections
-filtered_data = data[(data['Commune'] == selected_commune) & (data['Bailleur'] == selected_bailleur)]
+# Calcul du nombre de résidences avec et sans VHU
+etat_complet = df[df['Etat'] == 'Complet'].shape[0]
+etat_incomplet = df[df['Etat'] == 'Incomplet'].shape[0]
 
-# Calcul des nouveaux KPI basés sur les données filtrées
-nombre_total_residences_filtre = filtered_data['Residences'].nunique()
-residences_avec_vhu_filtre = filtered_data[filtered_data['Nombre de VHU'] > 0]['Residences'].nunique()
-residences_sans_vhu_filtre = filtered_data[filtered_data['Nombre de VHU'] == 0]['Residences'].nunique()
-etat_complet_filtre = filtered_data[filtered_data['Etat'] == 'Complet'].shape[0]
-etat_incomplet_filtre = filtered_data[filtered_data['Etat'] == 'Incomplet'].shape[0]
+# Calcul des pourcentages
+pourcentage_complet = (etat_complet / nombre_total_lignes) *100
+pourcentage_incomplet = (etat_incomplet / nombre_total_lignes) *100
 
-# Calcul des pourcentages basés sur les données filtrées
-pourcentage_avec_vhu_filtre = (residences_avec_vhu_filtre / nombre_total_residences_filtre) * 100
-pourcentage_sans_vhu_filtre = (residences_sans_vhu_filtre / nombre_total_residences_filtre) * 100
-pourcentage_complet_filtre = (etat_complet_filtre / filtered_data.shape[0]) * 100
-pourcentage_incomplet_filtre = (etat_incomplet_filtre / filtered_data.shape[0]) * 100
+# Définition des styles CSS pour les cadres KPI
+style_kpi_centered = """
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+"""
 
-# Affichage des KPI mis à jour
+# Définir le style pour le conteneur flex
+style_container = 'display: flex; width: 100%;'
+
+# Définir le style pour chaque cadre KPI à l'intérieur du conteneur flex
+style_kpi_inline = """
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 4px;
+    width: calc(100% - 5px); /* 50% width minus margin between elements */
+    text-align: center;
+    margin-right: 10px; /* margin between elements */
+"""
+
+# Affichage dans Streamlit avec des cadres KPI personnalisés
 st.subheader('Statistiques des Véhicules Hors d\'Usage (VHU)')
 
-# Cadre KPI pour le nombre total de résidences recensées (basé sur les données filtrées)
+# Cadre KPI pour le nombre total de véhicules VHU
 st.markdown(f'<div style="{style_kpi_centered}">\
-                <h3 style="margin-bottom: 8px;">Nombre total de résidences recensées (Filtré)</h3>\
-                <p style="font-weight: bold; font-size: 24px;">{nombre_total_residences_filtre}</p>\
+                <h3 style="margin-bottom: 8px;">Nombre total de VHU recensés</h3>\
+                <p style="font-weight: bold; font-size: 24px;">{nombre_total_lignes}</p>\
               </div>', unsafe_allow_html=True)
 
-# Cadre KPI pour le nombre de résidences avec VHU (basé sur les données filtrées)
-st.markdown(f"""
-    <div style="{style_kpi_inline}">
-        <h3 style="margin-bottom: 20px;">Nombre de résidences avec VHU (Filtré)</h3>
-        <p style="font-weight: bold;">{residences_avec_vhu_filtre} ({pourcentage_avec_vhu_filtre:.2f}%)</p>
-    </div>
-""", unsafe_allow_html=True)
+# Cadre KPI pour le nombre total de résidences recensées
+st.markdown(f'<div style="{style_kpi_centered}">\
+                <h3 style="margin-bottom: 8px;">Nombre total de résidences recensées</h3>\
+                <p style="font-weight: bold; font-size: 24px;">{nombre_total_residences}</p>\
+              </div>', unsafe_allow_html=True)
 
-# Cadre KPI pour le nombre de résidences sans VHU (basé sur les données filtrées)
-st.markdown(f"""
-    <div style="{style_kpi_inline}">
-        <h3 style="margin-bottom: 20px;">Nombre de résidences sans VHU (Filtré)</h3>
-        <p style="font-weight: bold;">{residences_sans_vhu_filtre} ({pourcentage_sans_vhu_filtre:.2f}%)</p>
-    </div>
-""", unsafe_allow_html=True)
+# Création d'un tableau pour afficher les cadres KPI
+col1, col2 = st.columns(2)
 
-# Cadre KPI pour le nombre de véhicules complets (basé sur les données filtrées)
-st.markdown(f"""
-    <div style="{style_kpi_inline}">
-        <h3 style="margin-bottom: 20px;">Nombre de véhicules complets (Filtré)</h3>
-        <p style="font-weight: bold;">{etat_complet_filtre} ({pourcentage_complet_filtre:.2f}%)</p>
-    </div>
-""", unsafe_allow_html=True)
+# Cadre KPI pour le nombre de résidences avec VHU (dans la colonne de gauche)
+with col1:
+    st.markdown(f"""
+        <div style="{style_kpi_inline}">
+            <h3 style="margin-bottom: 20px;">Nombre de résidences avec VHU</h3>
+            <p style="font-weight: bold;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
+        </div>
+    """, unsafe_allow_html=True)
 
-# Cadre KPI pour le nombre de véhicules incomplets (basé sur les données filtrées)
-st.markdown(f"""
-    <div style="{style_kpi_inline}">
-        <h3 style="margin-bottom: 20px;">Nombre de véhicules incomplets (Filtré)</h3>
-        <p style="font-weight: bold;">{etat_incomplet_filtre} ({pourcentage_incomplet_filtre:.2f}%)</p>
-    </div>
-""", unsafe_allow_html=True)
+# Cadre KPI pour le nombre de résidences sans VHU (dans la colonne de droite)
+with col2:
+    st.markdown(f"""
+        <div style="{style_kpi_inline}">
+            <h3 style="margin-bottom: 20px;">Nombre de résidences sans VHU</h3>
+            <p style="font-weight: bold;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
+        </div>
+    """, unsafe_allow_html=True)
+
+
+##### TEST COMPLET INCOMPLET########
+
+
+
+# Création d'un tableau pour afficher les cadres KPI
+col3, col4 = st.columns(2)
+
+# Cadre KPI pour le nombre de résidences avec VHU (dans la colonne de gauche)
+with col3:
+    st.markdown(f"""
+        <div style="{style_kpi_inline}">
+            <h3 style="margin-bottom: 20px;">Nombre de voitures complètes</h3>
+            <p style="font-weight: bold;">{etat_complet} ({pourcentage_complet:.2f}%)</p>
+        </div>
+    """, unsafe_allow_html=True)
+
+# Cadre KPI pour le nombre de résidences sans VHU (dans la colonne de droite)
+with col4:
+    st.markdown(f"""
+        <div style="{style_kpi_inline}">
+            <h3 style="margin-bottom: 20px;">Nombre de voiture incomplètes</h3>
+            <p style="font-weight: bold;">{etat_incomplet} ({pourcentage_incomplet:.2f}%)</p>
+        </div>
+    """, unsafe_allow_html=True)
+
+# Fermer le conteneur flex
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 ##### TEST COMPLET INCOMPLET########
