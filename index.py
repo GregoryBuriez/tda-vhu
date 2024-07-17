@@ -7,7 +7,7 @@ import os
 
 ########################"CHARGEMENT DES DONNEES"################################
 # Charger les données
-df = pd.read_excel("FINAL.xlsx')
+df = pd.read_excel("FINAL.xlsx")
 # Charger les données pour la carte
 #data = pd.read_excel("Map nb vhu.xlsx')
 
