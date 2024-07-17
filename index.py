@@ -144,34 +144,6 @@ with col4:
 st.markdown('</div>', unsafe_allow_html=True)
 
 
-##### TEST COMPLET INCOMPLET########
-
-
-
-# Création d'un tableau pour afficher les cadres KPI
-col3, col4 = st.columns(2)
-
-# Cadre KPI pour le nombre de résidences avec VHU (dans la colonne de gauche)
-with col3:
-    st.markdown(f"""
-        <div style="{style_kpi_inline}">
-            <h3 style="margin-bottom: 20px;">Nombre de voitures complètes</h3>
-            <p style="font-weight: bold;">{etat_complet} ({pourcentage_complet:.2f}%)</p>
-        </div>
-    """, unsafe_allow_html=True)
-
-# Cadre KPI pour le nombre de résidences sans VHU (dans la colonne de droite)
-with col4:
-    st.markdown(f"""
-        <div style="{style_kpi_inline}">
-            <h3 style="margin-bottom: 20px;">Nombre de voiture incomplètes</h3>
-            <p style="font-weight: bold;">{etat_incomplet} ({pourcentage_incomplet:.2f}%)</p>
-        </div>
-    """, unsafe_allow_html=True)
-
-# Fermer le conteneur flex
-st.markdown('</div>', unsafe_allow_html=True)
-
 
 ####################################"GRAPHIQUE PRESENTATION"###################################""
 
@@ -218,6 +190,10 @@ with st.expander("Détail fiches"):
     # Calcul du nombre de résidences avec VHU (nombre unique de valeurs dans la colonne Adresse)
     nombre_residences_vhu = filtered_df['Adresse'].nunique()
 
+    # Calcul du nombre de VHU en état complet et incomplet
+    nombre_vhu_complet = filtered_df[filtered_df['Etat'] == 'Complet'].shape[0]
+    nombre_vhu_incomplet = filtered_df[filtered_df['Etat'] == 'Incomplet'].shape[0]
+
 # Définition des styles CSS pour les cadres KPI
 style_kpi_centered = """
     padding: 10px;
@@ -242,8 +218,14 @@ else:
                     <p style="font-weight: bold; font-size: 24px;">{nombre_vhu} VHU, {nombre_residences_vhu} résidences avec VHU</p>\
                 </div>', unsafe_allow_html=True)
 
-    # Afficher le DataFrame complet filtré avec les colonnes spécifiées
-    st.dataframe(filtered_df[['Fiche Numéro', 'Créé le', 'Marque', 'Etat', 'Adresse', 'Ville', 'Bailleur Sociale']])
+# Affichage des nouveaux KPI pour état complet et incomplet
+st.markdown(f'<div style="{style_kpi_centered}">\
+                <h3 style="margin-bottom: 8px;">État des VHU</h3>\
+                <p style="font-weight: bold; font-size: 24px;">{nombre_vhu_complet} VHU Complet, {nombre_vhu_incomplet} VHU Incomplet</p>\
+            </div>', unsafe_allow_html=True)
+
+# Afficher le DataFrame complet filtré avec les colonnes spécifiées
+st.dataframe(filtered_df[['Fiche Numéro', 'Créé le', 'Marque', 'Etat', 'Adresse', 'Ville', 'Bailleur Sociale']])
 
 ###############################"CARTE INTERACTIVE##############################
 
