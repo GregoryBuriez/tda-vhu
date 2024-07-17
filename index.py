@@ -17,7 +17,7 @@ df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en c
 
 ################################"VIDEO PRESENTATION"################################""
 
-st.title('Compte rendu inventaire bailleurs sociaux')
+st.title('INVENTAIRE BAILLEURS 2024')
 
 # Ajouter un sous-titre avec Markdown
 st.markdown('Inventaire 2024')
