@@ -148,7 +148,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.title('Représentation graphique des données')
 
 # Définir le chemin vers votre image
-image_path2 = "C:\\Users\\gregm\\OneDrive\\Bureau\\Test theo\\image GRAPHIQUES.png"
+image_path2 = "image GRAPHIQUES.png"
 
 # Vérifier si l'image existe
 if os.path.exists(image_path2):
