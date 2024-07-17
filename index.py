@@ -17,8 +17,10 @@ df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en c
 
 ################################"VIDEO PRESENTATION"################################""
 
-#st.title('Compte rendu inventaire bailleurs sociaux')
+st.title('Compte rendu inventaire bailleurs sociaux')
 
+# Ajouter un sous-titre avec Markdown
+st.markdown('Inventaire 2024')
 # Insérer l'URL de la vidéo YouTube
 youtube_url = "https://www.youtube.com/watch?v=QkF3oxziUI4"
 
