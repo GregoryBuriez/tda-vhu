@@ -258,3 +258,15 @@ with open(html_file_path, 'r', encoding='utf-8') as html_file:
 # Afficher le contenu HTML
 components.html(html_content, height=800)  # Ajustez la hauteur selon vos besoins
 
+################################ LIEN BI #################################
+
+# Création de l'encart avec le lien
+st.markdown("""
+<div style="border:2px solid #0078d7; padding: 20px; text-align: center;">
+    <a href="https://app.powerbi.com/groups/me/reports/8e94a596-3110-4c29-8d0a-9edaa239c059/ReportSection?experience=power-bi" 
+       style="text-decoration: none; color: #0078d7; font-weight: bold;" target="_blank">
+        Lien vers tableau de bord POWERBI
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
