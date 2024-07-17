@@ -34,8 +34,8 @@ nombre_total_lignes = df.shape[0]
 # Calcul du nombre total de résidences dans le dataframe
 nombre_total_residences = data['Residences'].nunique()
 # Calcul du nombre de résidences avec et sans VHU
-residences_avec_vhu = data[data['Nombre de VHU'] > 0]['Résidences'].nunique()
-residences_sans_vhu = data[data['Nombre de VHU'] == 0]['Résidences'].nunique()
+residences_avec_vhu = data[data['Nombre de VHU'] > 0]['Residences'].nunique()
+residences_sans_vhu = data[data['Nombre de VHU'] == 0]['Residences'].nunique()
 
 # Calcul des pourcentages
 pourcentage_avec_vhu = (residences_avec_vhu / nombre_total_residences) * 100
