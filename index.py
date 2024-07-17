@@ -2,13 +2,12 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
-import openpyxl
 
 
 
 ########################"CHARGEMENT DES DONNEES"################################
 # Charger les données
-df = pd.read_excel("FINAL.xlsx")
+df = pd.read_csv("FINALtda.csv")
 # Charger les données pour la carte
 #data = pd.read_excel("Map nb vhu.xlsx')
 
