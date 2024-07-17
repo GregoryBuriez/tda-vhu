@@ -9,7 +9,7 @@ import os
 # Charger les données
 df = pd.read_csv('FINALtda.csv', delimiter=';')
 # Charger les données pour la carte
-#data = pd.read_excel("Map nb vhu.xlsx')
+data = pd.read_excel("Mapnbvhu.csv')
 
 # Convertir les colonnes en types de données appropriés
 df['Vehicule'] = df['Vehicule'].astype(str)  # Convertir la colonne 'Vehicule' en chaîne de caractères
