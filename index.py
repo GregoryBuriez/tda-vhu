@@ -218,11 +218,29 @@ with st.expander("Détail fiches"):
     # Calcul du nombre de résidences avec VHU (nombre unique de valeurs dans la colonne Adresse)
     nombre_residences_vhu = filtered_df['Adresse'].nunique()
 
-    # Afficher les données pour la commune sélectionnée et le bailleur sélectionné
-    if selected_commune == 'Toutes' and selected_bailleur == 'Tous':
-        st.write(f"### Toutes les données ({nombre_vhu} VHU, {nombre_residences_vhu} résidences avec VHU)")
-    else:
-        st.write(f"### Données pour la commune : {selected_commune} et le bailleur : {selected_bailleur} ({nombre_vhu} VHU, {nombre_residences_vhu} résidences avec VHU)")
+# Définition des styles CSS pour les cadres KPI
+style_kpi_centered = """
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+"""
+
+# Affichage des KPI
+if selected_commune == 'Toutes' and selected_bailleur == 'Tous':
+    st.markdown(f'<div style="{style_kpi_centered}">\
+                    <h3 style="margin-bottom: 8px;">Toutes les données</h3>\
+                    <p style="font-weight: bold; font-size: 24px;">{nombre_vhu} VHU, {nombre_residences_vhu} résidences avec VHU</p>\
+                </div>', unsafe_allow_html=True)
+else:
+    st.markdown(f'<div style="{style_kpi_centered}">\
+                    <h3 style="margin-bottom: 8px;">Données pour la commune : {selected_commune} et le bailleur : {selected_bailleur}</h3>\
+                    <p style="font-weight: bold; font-size: 24px;">{nombre_vhu} VHU, {nombre_residences_vhu} résidences avec VHU</p>\
+                </div>', unsafe_allow_html=True)
 
     # Afficher le DataFrame complet filtré avec les colonnes spécifiées
     st.dataframe(filtered_df[['Fiche Numéro', 'Créé le', 'Marque', 'Etat', 'Adresse', 'Ville', 'Bailleur Sociale']])
