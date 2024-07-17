@@ -19,12 +19,11 @@ df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en c
 
 #st.title('Compte rendu inventaire bailleurs sociaux')
 
-# Définir le chemin vers votre vidéo
-#video_file_path = "https://drive.google.com/file/d/1o47zz06n_x36wZOIKrz3bERCYJ4dT7C2/view?usp=sharing"
+# Insérer l'URL de la vidéo YouTube
+youtube_url = "https://www.youtube.com/watch?v=QkF3oxziUI4"
 
-# Lire et afficher la vidéo
-#st.title("Lecteur de vidéo Streamlit")
-#st.video(video_file_path)
+# Afficher la vidéo YouTube sur Streamlit
+st.video(youtube_url)
 
 
 ############################## CREATION KPI ####################################
