@@ -161,8 +161,6 @@ else:
 
 
 
-##########################"CREATION SOMMAIRE LATERALE"#############################""
-
 # Ajouter l'expander pour afficher le DataFrame complet avec les filtres à l'intérieur
 with st.expander("Détail fiches"):
 
@@ -194,6 +192,10 @@ with st.expander("Détail fiches"):
     nombre_vhu_complet = filtered_df[filtered_df['Etat'] == 'Complet'].shape[0]
     nombre_vhu_incomplet = filtered_df[filtered_df['Etat'] == 'Incomplet'].shape[0]
 
+    # Calcul du nombre de VHU par bailleur si aucune sélection de bailleur
+    if selected_bailleur == 'Tous' and selected_commune != 'Toutes':
+        nombre_vhu_par_bailleur = filtered_df.groupby('Bailleur Sociale').size()
+
 # Définition des styles CSS pour les cadres KPI
 style_kpi_centered = """
     padding: 10px;
@@ -212,6 +214,16 @@ if selected_commune == 'Toutes' and selected_bailleur == 'Tous':
                     <h3 style="margin-bottom: 8px;">Toutes les données</h3>\
                     <p style="font-weight: bold; font-size: 24px;">{nombre_vhu} VHU, {nombre_residences_vhu} résidences avec VHU</p>\
                 </div>', unsafe_allow_html=True)
+elif selected_bailleur == 'Tous':
+    st.markdown(f'<div style="{style_kpi_centered}">\
+                    <h3 style="margin-bottom: 8px;">Données pour la commune : {selected_commune}</h3>\
+                    <p style="font-weight: bold; font-size: 24px;">{nombre_vhu} VHU, {nombre_residences_vhu} résidences avec VHU</p>\
+                </div>', unsafe_allow_html=True)
+    # Affichage des VHU par bailleur
+    for bailleur, count in nombre_vhu_par_bailleur.items():
+        st.markdown(f'<div style="{style_kpi_centered}">\
+                        <p style="font-weight: bold; font-size: 18px;">{bailleur} : {count} VHU</p>\
+                    </div>', unsafe_allow_html=True)
 else:
     st.markdown(f'<div style="{style_kpi_centered}">\
                     <h3 style="margin-bottom: 8px;">Données pour la commune : {selected_commune} et le bailleur : {selected_bailleur}</h3>\
