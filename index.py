@@ -22,7 +22,7 @@ st.title('INVENTAIRE BAILLEURS 2024')
 # Ajouter un sous-titre avec Markdown
 st.markdown('Inventaire 2024')
 # Insérer l'URL de la vidéo YouTube
-youtube_url = "https://www.youtube.com/watch?v=QkF3oxziUI4"
+youtube_url = "https://youtu.be/G2ecW4E72ug"
 
 # Afficher la vidéo YouTube sur Streamlit
 st.video(youtube_url)
