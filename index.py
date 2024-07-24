@@ -87,44 +87,47 @@ style_kpi_inline = """
     border-radius: 4px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
     margin-bottom: 4px;
-    width: calc(100% - 5px); /* 50% width minus margin between elements */
+    width: calc(50% - 15px); /* Ajusté pour tenir compte de la marge */
     text-align: center;
-    margin-right: 10px; /* margin between elements */
+    margin-right: 15px; /* marge entre les éléments */
 """
 
-
 # Cadre KPI pour le nombre total de véhicules VHU
-st.markdown(f'<div style="{style_kpi_centered}">\
-                <h3 style="margin-bottom: 8px;">Nombre total de VHU recensés</h3>\
-                <p style="font-weight: bold; font-size: 24px;">{nombre_total_lignes}</p>\
-              </div>', unsafe_allow_html=True)
+st.markdown(f'''
+    <div style="{style_kpi_centered}">
+        <h3 style="margin-bottom: 8px;">Nombre total de VHU recensés</h3>
+        <p style="font-weight: bold; font-size: 32px; margin: 0;">{nombre_total_lignes}</p>
+    </div>
+''', unsafe_allow_html=True)
 
 # Cadre KPI pour le nombre total de résidences recensées
-st.markdown(f'<div style="{style_kpi_centered}">\
-                <h3 style="margin-bottom: 8px;">Nombre total de résidences recensées</h3>\
-                <p style="font-weight: bold; font-size: 24px;">{nombre_total_residences}</p>\
-              </div>', unsafe_allow_html=True)
+st.markdown(f'''
+    <div style="{style_kpi_centered}">
+        <h3 style="margin-bottom: 8px;">Nombre total de résidences recensées</h3>
+        <p style="font-weight: bold; font-size: 32px; margin: 0;">{nombre_total_residences}</p>
+    </div>
+''', unsafe_allow_html=True)
 
 # Création d'un tableau pour afficher les cadres KPI
 col1, col2 = st.columns(2)
 
 # Cadre KPI pour le nombre de résidences avec VHU (dans la colonne de gauche)
 with col1:
-    st.markdown(f"""
+    st.markdown(f'''
         <div style="{style_kpi_inline}">
             <h3 style="margin-bottom: 20px;">Nombre de résidences avec VHU</h3>
-            <p style="font-weight: bold;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
+            <p style="font-weight: bold; font-size: 32px; margin: 0;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
         </div>
-    """, unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
 # Cadre KPI pour le nombre de résidences sans VHU (dans la colonne de droite)
 with col2:
-    st.markdown(f"""
+    st.markdown(f'''
         <div style="{style_kpi_inline}">
             <h3 style="margin-bottom: 20px;">Nombre de résidences sans VHU</h3>
-            <p style="font-weight: bold;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
+            <p style="font-weight: bold; font-size: 32px; margin: 0;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
         </div>
-    """, unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
 
 ##### TEST COMPLET INCOMPLET########
