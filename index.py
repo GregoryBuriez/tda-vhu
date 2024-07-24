@@ -12,6 +12,10 @@ df = pd.read_csv('FINALtda.csv', delimiter=';')
 data = pd.read_csv("Mapnbvhu.csv", delimiter=';')
 
 # Convertir les colonnes en types de données appropriés
+
+# Remplacer les valeurs "TAUPINIÈRE" par "LE DIAMANT" dans la colonne "NOM"
+df.loc[df['Ville'] == 'TAUPINIÈRE', 'Ville'] = 'LE DIAMANT'
+
 df['Vehicule'] = df['Vehicule'].astype(str)  # Convertir la colonne 'Vehicule' en chaîne de caractères
 df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en chaîne de caractères
 
