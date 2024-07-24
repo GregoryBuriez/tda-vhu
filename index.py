@@ -19,8 +19,7 @@ df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en c
 
 st.title('INVENTAIRE BAILLEURS 2024')
 
-# Ajouter un sous-titre avec Markdown
-st.markdown('Inventaire 2024')
+
 # Insérer l'URL de la vidéo YouTube
 youtube_url = "https://youtu.be/G2ecW4E72ug"
 
@@ -78,8 +77,6 @@ style_kpi_inline = """
     margin-right: 10px; /* margin between elements */
 """
 
-# Affichage dans Streamlit avec des cadres KPI personnalisés
-st.subheader('Statistiques des Véhicules Hors d\'Usage (VHU)')
 
 # Cadre KPI pour le nombre total de véhicules VHU
 st.markdown(f'<div style="{style_kpi_centered}">\
@@ -154,7 +151,6 @@ image_path2 = "image GRAPHIQUES.png"
 
 # Vérifier si l'image existe
 if os.path.exists(image_path2):
-    st.title("Graphique")
     st.image(image_path2)
 else:
     st.error(f"L'image n'a pas été trouvée à l'emplacement: {image_path2}")
