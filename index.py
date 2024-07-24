@@ -163,7 +163,8 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 ####################################"GRAPHIQUE PRESENTATION"###################################""
 
-st.title('Représentation graphique des données')
+# Ajoute une ligne horizontale
+st.markdown('----------------------------------------------------------')
 
 # Définir le chemin vers votre image
 image_path2 = "télécharger.png"
