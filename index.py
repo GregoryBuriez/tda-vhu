@@ -17,7 +17,22 @@ df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en c
 
 ################################"VIDEO PRESENTATION"################################""
 
-st.title('INVENTAIRE BAILLEURS 2024')
+# CSS to center the title
+st.markdown(
+    """
+    <style>
+    .center-title {
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Centered title
+st.markdown('<div class="center-title">INVENTAIRE BAILLEURS 2024</div>', unsafe_allow_html=True)
 
 
 # Insérer l'URL de la vidéo YouTube
@@ -147,7 +162,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.title('Représentation graphique des données')
 
 # Définir le chemin vers votre image
-image_path2 = "image GRAPHIQUES.png"
+image_path2 = "télécharger.png"
 
 # Vérifier si l'image existe
 if os.path.exists(image_path2):
