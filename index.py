@@ -111,7 +111,7 @@ col1, col2 = st.columns(2)
 # Cadre KPI pour le nombre de résidences avec VHU (dans la colonne de gauche)
 with col1:
     st.markdown(f"""
-        <div style="{style_kpi_inline}; text-align: center;">
+        <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
             <h3 style="margin-bottom: 20px;">Nombre de résidences avec VHU</h3>
             <p style="font-weight: bold; font-size: 18px;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
         </div>
@@ -120,7 +120,7 @@ with col1:
 # Cadre KPI pour le nombre de résidences sans VHU (dans la colonne de droite)
 with col2:
     st.markdown(f"""
-        <div style="{style_kpi_inline}; text-align: center;">
+        <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
             <h3 style="margin-bottom: 20px;">Nombre de résidences sans VHU</h3>
             <p style="font-weight: bold; font-size: 18px;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
         </div>
@@ -137,7 +137,7 @@ col3, col4 = st.columns(2)
 # Cadre KPI pour le nombre de résidences avec VHU (dans la colonne de gauche)
 with col3:
     st.markdown(f"""
-        <div style="{style_kpi_inline}; text-align: center;">
+        <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
             <h3 style="margin-bottom: 20px;">Nombre de voitures complètes</h3>
             <p style="font-weight: bold; font-size: 18px;">{etat_complet} ({pourcentage_complet:.2f}%)</p>
         </div>
@@ -146,7 +146,7 @@ with col3:
 # Cadre KPI pour le nombre de résidences sans VHU (dans la colonne de droite)
 with col4:
     st.markdown(f"""
-        <div style="{style_kpi_inline}; text-align: center;">
+        <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
             <h3 style="margin-bottom: 20px;">Nombre de voiture incomplètes</h3>
             <p style="font-weight: bold; font-size: 18px;">{etat_incomplet} ({pourcentage_incomplet:.2f}%)</p>
         </div>
