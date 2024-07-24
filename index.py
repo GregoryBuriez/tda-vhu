@@ -96,13 +96,13 @@ style_kpi_inline = """
 # Cadre KPI pour le nombre total de véhicules VHU
 st.markdown(f'<div style="{style_kpi_centered}">\
                 <h3 style="margin-bottom: 8px;">Nombre total de VHU recensés</h3>\
-                <p style="font-weight: bold; font-size: 32px;">{nombre_total_lignes}</p>\
+                <p style="font-weight: bold; font-size: 24px;">{nombre_total_lignes}</p>\
               </div>', unsafe_allow_html=True)
 
 # Cadre KPI pour le nombre total de résidences recensées
 st.markdown(f'<div style="{style_kpi_centered}">\
                 <h3 style="margin-bottom: 8px;">Nombre total de résidences recensées</h3>\
-                <p style="font-weight: bold; font-size: 32px;">{nombre_total_residences}</p>\
+                <p style="font-weight: bold; font-size: 24px;">{nombre_total_residences}</p>\
               </div>', unsafe_allow_html=True)
 
 # Création d'un tableau pour afficher les cadres KPI
@@ -113,7 +113,7 @@ with col1:
     st.markdown(f"""
         <div style="{style_kpi_inline}">
             <h3 style="margin-bottom: 20px;">Nombre de résidences avec VHU</h3>
-            <p style="font-weight: bold;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
+            <p style="font-weight: bold; font-size: 18px;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -122,7 +122,7 @@ with col2:
     st.markdown(f"""
         <div style="{style_kpi_inline}">
             <h3 style="margin-bottom: 20px;">Nombre de résidences sans VHU</h3>
-            <p style="font-weight: bold;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
+            <p style="font-weight: bold; font-size: 18px;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -139,7 +139,7 @@ with col3:
     st.markdown(f"""
         <div style="{style_kpi_inline}">
             <h3 style="margin-bottom: 20px;">Nombre de voitures complètes</h3>
-            <p style="font-weight: bold;">{etat_complet} ({pourcentage_complet:.2f}%)</p>
+            <p style="font-weight: bold; font-size: 18px;">{etat_complet} ({pourcentage_complet:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -148,7 +148,7 @@ with col4:
     st.markdown(f"""
         <div style="{style_kpi_inline}">
             <h3 style="margin-bottom: 20px;">Nombre de voiture incomplètes</h3>
-            <p style="font-weight: bold;">{etat_incomplet} ({pourcentage_incomplet:.2f}%)</p>
+            <p style="font-weight: bold; font-size: 18px;">{etat_incomplet} ({pourcentage_incomplet:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
 
