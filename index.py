@@ -15,6 +15,8 @@ data = pd.read_csv("Mapnbvhu.csv", delimiter=';')
 
 # Remplacer les valeurs "TAUPINIÈRE" par "LE DIAMANT" dans la colonne "NOM"
 df.loc[df['Ville'] == 'TAUPINIÈRE', 'Ville'] = 'LE DIAMANT'
+# Remplacer les valeurs "LA TRINITE" par "LA TRINITE" dans la colonne "NOM"
+df.loc[df['Ville'] == 'LA TRINITÉ', 'Ville'] = 'LA TRINITE'
 
 df['Vehicule'] = df['Vehicule'].astype(str)  # Convertir la colonne 'Vehicule' en chaîne de caractères
 df['Ville'] = df['Ville'].astype(str)        # Convertir la colonne 'Ville' en chaîne de caractères
@@ -27,7 +29,7 @@ st.markdown(
     <style>
     .center-title {
         text-align: center;
-        font-size: 36px;
+        font-size: 48px;
         font-weight: bold;
     }
     </style>
@@ -115,7 +117,7 @@ with col1:
     st.markdown(f"""
         <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
             <h3 style="margin-bottom: 20px;">Nombre de résidences avec VHU</h3>
-            <p style="font-weight: bold; font-size: 20px;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
+            <p style="font-weight: bold; font-size: 32px;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -124,7 +126,7 @@ with col2:
     st.markdown(f"""
         <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
             <h3 style="margin-bottom: 20px;">Nombre de résidences sans VHU</h3>
-            <p style="font-weight: bold; font-size: 20px;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
+            <p style="font-weight: bold; font-size: 32px;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -140,8 +142,8 @@ col3, col4 = st.columns(2)
 with col3:
     st.markdown(f"""
         <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
-            <h3 style="margin-bottom: 20px;">Nombre de voitures complètes</h3>
-            <p style="font-weight: bold; font-size: 20px;">{etat_complet} ({pourcentage_complet:.2f}%)</p>
+            <h3 style="margin-bottom: 20px;">Nombre de VHU complets</h3>
+            <p style="font-weight: bold; font-size: 32px;">{etat_complet} ({pourcentage_complet:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -149,8 +151,8 @@ with col3:
 with col4:
     st.markdown(f"""
         <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
-            <h3 style="margin-bottom: 20px;">Nombre de voiture incomplètes</h3>
-            <p style="font-weight: bold; font-size: 20px;">{etat_incomplet} ({pourcentage_incomplet:.2f}%)</p>
+            <h3 style="margin-bottom: 20px;">Nombre de VHU incomplets</h3>
+            <p style="font-weight: bold; font-size: 32px;">{etat_incomplet} ({pourcentage_incomplet:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -256,7 +258,7 @@ st.dataframe(filtered_df[['Fiche Numéro', 'Créé le', 'Marque', 'Etat', 'Adres
 
 import streamlit.components.v1 as components
 
-st.title('Affichage de la page HTML')
+st.title('Cartographie')
 # Définir le chemin vers votre fichier HTML
 html_file_path = "carte_vhu_martinique.html"
 # Lire le contenu du fichier HTML
