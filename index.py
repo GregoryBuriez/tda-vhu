@@ -248,7 +248,7 @@ else:
 # Affichage des nouveaux KPI pour état complet et incomplet
 st.markdown(f'<div style="{style_kpi_centered}">\
                 <h3 style="margin-bottom: 8px;">État des VHU</h3>\
-                <p style="font-weight: bold; font-size: 24px;">{nombre_vhu_complet} VHU Complet, {nombre_vhu_incomplet} VHU Incomplet</p>\
+                <p style="font-weight: bold; font-size: 24px;">{nombre_vhu_complet} VHU Complets, {nombre_vhu_incomplet} VHU Incomplets</p>\
             </div>', unsafe_allow_html=True)
 
 # Afficher le DataFrame complet filtré avec les colonnes spécifiées
