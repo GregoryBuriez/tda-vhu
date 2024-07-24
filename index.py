@@ -99,13 +99,13 @@ style_kpi_inline = """
 
 # Cadre KPI pour le nombre total de véhicules VHU
 st.markdown(f'<div style="{style_kpi_centered}">\
-                <h3 style="margin-bottom: 8px;">Nombre total de VHU recensés</h3>\
+                <h3 style="margin-bottom: 8px;">Nombre de VHU recencés</h3>\
                 <p style="font-weight: bold; font-size: 30px;">{nombre_total_lignes}</p>\
               </div>', unsafe_allow_html=True)
 
 # Cadre KPI pour le nombre total de résidences recensées
 st.markdown(f'<div style="{style_kpi_centered}">\
-                <h3 style="margin-bottom: 8px;">Nombre total de résidences recensées</h3>\
+                <h3 style="margin-bottom: 8px;">Nombre de résidences recensées</h3>\
                 <p style="font-weight: bold; font-size: 30px;">{nombre_total_residences}</p>\
               </div>', unsafe_allow_html=True)
 
@@ -116,7 +116,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.markdown(f"""
         <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
-            <h3 style="margin-bottom: 20px;">Nombre de résidences avec VHU</h3>
+            <h3 style="margin-bottom: 20px;">Résidences avec VHU</h3>
             <p style="font-weight: bold; font-size: 32px;">{residences_avec_vhu} ({pourcentage_avec_vhu:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
@@ -125,7 +125,7 @@ with col1:
 with col2:
     st.markdown(f"""
         <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
-            <h3 style="margin-bottom: 20px;">Nombre de résidences sans VHU</h3>
+            <h3 style="margin-bottom: 20px;">Résidences sans VHU</h3>
             <p style="font-weight: bold; font-size: 32px;">{residences_sans_vhu} ({pourcentage_sans_vhu:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
@@ -142,7 +142,7 @@ col3, col4 = st.columns(2)
 with col3:
     st.markdown(f"""
         <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
-            <h3 style="margin-bottom: 20px;">Nombre de VHU complets</h3>
+            <h3 style="margin-bottom: 20px;">VHU complets</h3>
             <p style="font-weight: bold; font-size: 32px;">{etat_complet} ({pourcentage_complet:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
@@ -151,7 +151,7 @@ with col3:
 with col4:
     st.markdown(f"""
         <div style="{style_kpi_inline}; text-align: center; margin: 0 auto;">
-            <h3 style="margin-bottom: 20px;">Nombre de VHU incomplets</h3>
+            <h3 style="margin-bottom: 20px;">VHU incomplets</h3>
             <p style="font-weight: bold; font-size: 32px;">{etat_incomplet} ({pourcentage_incomplet:.2f}%)</p>
         </div>
     """, unsafe_allow_html=True)
@@ -258,7 +258,22 @@ st.dataframe(filtered_df[['Fiche Numéro', 'Créé le', 'Marque', 'Etat', 'Adres
 
 import streamlit.components.v1 as components
 
-st.title('Cartographie')
+# CSS to center the title
+st.markdown(
+    """
+    <style>
+    .center-title {
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Centered title
+st.markdown('<div class="center-title">CARTOGRAPHIE</div>', unsafe_allow_html=True)
 # Définir le chemin vers votre fichier HTML
 html_file_path = "carte_vhu_martinique.html"
 # Lire le contenu du fichier HTML
