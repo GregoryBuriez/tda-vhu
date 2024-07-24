@@ -84,13 +84,11 @@ style_kpi_inline = """
     padding: 10px;
     background-color: #f9f9f9;
     border: 1px solid #e6e6e6;
-    border-radius: 4px;
+    border-radius: 5px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    margin-bottom: 4px;
-    width: calc(100% - 5px); /* 50% width minus margin between elements */
-    text-align: center;
-    margin-right: 10px; /* margin between elements */
-"""
+    margin-bottom: 10px;
+    width: 100%;
+    """
 
 
 # Cadre KPI pour le nombre total de véhicules VHU
